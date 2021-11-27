@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <title>The Food Garage</title>
+</head>
+
+<body>
+
+
+    <nav>
+        <ul class="nav-flex-row">
+            <li class="nav-item">
+                <a href="#about-section">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#download-app">Download App</a>
+            </li>
+            <li class="nav-item">
+                <a href="booking-form.html">Reservation</a>
+            </li>
+            <li class="nav-item">
+                <a href="reservations.html">My Reservations</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="#contact-us">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="section-intro">
+
+
+        <div class="bg-text">
+            <header>
+                <h1 class="welcome-class"> My Reservations </h1>
+            </header>            
+        </div>
+    </section>
+
+
+
+    <section  id="reservation-section">        
+    </section>
+    <br />
+
+
+    <section class="colored-section download-section-class" id="download-app">
+
+        <div class="container-fluid">
+
+            <h1 class="big-heading">Download our App to stay connected!</h1>
+
+            <button class="download-button btn btn-lg btn-dark" type="button"><i class="fab fa-apple"></i> <a
+                    style="  text-decoration: none; color:white;" target="_blank"
+                    href="https://www.apple.com/in/app-store/">App Store</a></button>
+            <button class="download-button btn btn-lg btn-dark" type="button"><i class="fab fa-google-play"></i> <a
+                    style="  text-decoration: none; color:white;" target="_blank" href="https://play.google.com/store">
+                    Play Store</a></button>
+        </div>
+    </section>
+
+
+
+
+    <div class="container-fluid text-center abc" id="contact-us">
+        <h1>Want to Say hi!</h1>
+        <span>We are all ears👂</span>
+        <form class="" action="mailto:support@thefoodgarage.com" method="post" enctype="text/plain">
+            <label for="">Name: </label>
+            <input type="text" name="YourName: " value="" placeholder="Enter your Name">
+            <label for="">Email:</label>
+            <input type="email" name="YourEmail: " placeholder="Enter your Email" value=""><br><br>
+            <textarea name="name" rows="8" placeholder="Enter your Message" cols="80"></textarea><br><br><br>
+            <input class="btn btn-dark" type="submit" name="" value="Sumbit Here">
+
+        </form>
+
+
+
+
+    </div>
+
+
+    <section class=" colored-section">
+
+        <div class="container">
+            <div class="row-flex">
+                <div class="contact-adress">
+                    <h3>
+                        About
+                    </h3>
+                    <p>
+                        <span>The Food Garage is the perfect place to satisfy your taste buds.</span>
+                        <span>Visit us to know more❤</span>
+                    </p>
+                </div>
+                <div class="opening-time">
+                    <h3>
+                        Opening times
+                    </h3>
+                    <p>
+                        <span>Monday—Thursday: 08:00 — 22:00</span>
+                        <span>Friday—Saturday: 09:00 — 23:00 </span>
+                        <span>Sunday: 10:00 — 17:00</span>
+                    </p>
+                </div>
+                <div class="contact-adress">
+                    <h3>
+                        Contact Us
+                    </h3>
+                    <p>
+                        <span>Mobile: 24/7 @7905XXXXXX </span>
+                        <span>Lotus Appartments</span>
+                        <span>Sector 1, HSR Layout</span>
+                        <span>Bengaluru</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center footer-copyright">
+        <p>© Copyright 2021 The Food Garage</p>
+        <p>Made by Ritwik</p>
+    </div>
+</body>
+
+<script>
+    const xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onload = function() {
+const myObj = JSON.parse(this.responseText); 
+
+let ticket = ``;   
+if(myObj.length==0){        
+    ticket += `<center><h3>No Reservations Yet!! <a href="index.html">Reserve one now</a></h3></center>`;    
+}    
+
+for (var i = 0; i < myObj.length; i++){
+    ticket += `<div class="col-lg-4 ticket">                
+                <div class="ticket_details">
+                    <h3>${myObj[i].name}</h3>                                          
+                    <p>Date: ${myObj[i].day}   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time: ${myObj[i].time}</p>
+                    <p>Number: ${myObj[i].qty}  </p>                    
+                </div>                    
+            </div>`;        
+}    
+
+
+document.getElementById("reservation-section").innerHTML = ticket;
+}
+xmlhttp.open("GET", "myreservations.php");
+xmlhttp.send();
+</script>
+
+</html>
