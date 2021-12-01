@@ -11,24 +11,20 @@
    if(!$conn) {
 	die("Unable to connect: " . $conn->connect_error);
    }
-
-   $name=$_POST["name"];
-   $mail=$_POST["email"];
-   $phone=$_POST["phone"];
-   $date=$_POST["date"];   
-   $time=$_POST["time"];
-   $people=$_POST["people"];
-   $message=$_POST["message"];   
-
+   
+   $id=$_GET["Cancel"];
+   //echo $id;   
+   
    //echo $name . $mail . $phone . $adult . $children . $checkin . $checkout . $room . $comments;
 
-   $sql = "INSERT INTO restaurant (name,email,phone,day,time,qty,message) values (\"".$name. "\",\"". $mail ."\",". $phone .",\"". $date ."\",\"". $time ."\",". $people .",\"". $messgae ."\")";
+   $sql = "delete from restaurant where id= $id";
 
    //echo $sql;
 
    if ($conn->query($sql) === TRUE) {
-      echo "New record created successfully";
-      header("Location: reservations.html");
+      echo "record deleted successfully";      
+      header("Refresh:0; url=reservations.html");
+
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
