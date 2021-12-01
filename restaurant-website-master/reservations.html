@@ -150,29 +150,49 @@
 <script>
     const xmlhttp = new XMLHttpRequest();
 
-xmlhttp.onload = function() {
-const myObj = JSON.parse(this.responseText); 
+    xmlhttp.onload = function() {
+    const myObj = JSON.parse(this.responseText); 
 
-let ticket = ``;   
-if(myObj.length==0){        
-    ticket += `<center><h3>No Reservations Yet!! <a href="index.html">Reserve one now</a></h3></center>`;    
-}    
+    let ticket = ``;   
+        if(myObj.length==0){        
+            ticket += `<center><h3>No Reservations Yet!! <a href="index.html">Reserve one now</a></h3></center>`;    
+    }    
 
-for (var i = 0; i < myObj.length; i++){
-    ticket += `<div class="col-lg-4 ticket">                
-                <div class="ticket_details">
-                    <h3>${myObj[i].name}</h3>                                          
-                    <p>Date: ${myObj[i].day}   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time: ${myObj[i].time}</p>
-                    <p>Number: ${myObj[i].qty}  </p>                    
-                </div>                    
-            </div>`;        
-}    
+    for (var i = 0; i < myObj.length; i++){
+        ticket += `<div class="col-lg-4 ticket">                
+                    <div class="ticket_details">
+                        <h3>${myObj[i].name}</h3>                                          
+                        <p>Date: ${myObj[i].day}   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time: ${myObj[i].time}</p>
+                        <p>Number: ${myObj[i].qty}  </p>                           
+                        <button onclick="deletereser(${myObj[i].id})" value=${myObj[i].id} name="Cancel">Cancel</button>                                 
+                    </div>                    
+                </div>`;        
+    }    
 
 
-document.getElementById("reservation-section").innerHTML = ticket;
-}
-xmlhttp.open("GET", "myreservations.php");
-xmlhttp.send();
+    document.getElementById("reservation-section").innerHTML = ticket;
+    }
+    xmlhttp.open("GET", "myreservations.php");
+    xmlhttp.send();
+
+    const deletereser = (e) => {        
+        console.log(e)        
+
+        var url = "delreservation.php";
+        var params = "Cancel="+e;
+        var http = new XMLHttpRequest();
+
+        http.open("GET", url+"?"+params, true);
+        http.onreadystatechange = function()
+        {
+            if(http.readyState == 4 && http.status == 200) {
+                //console.log(http.responseText);
+                window.location.reload()
+            }
+        }
+        http.send(null);
+    }
+
 </script>
 
 </html>
