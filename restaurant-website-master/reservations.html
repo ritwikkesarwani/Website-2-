@@ -163,8 +163,11 @@
                     <div class="ticket_details">
                         <h3>${myObj[i].name}</h3>                                          
                         <p>Date: ${myObj[i].day}   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time: ${myObj[i].time}</p>
-                        <p>Number: ${myObj[i].qty}  </p>                           
-                        <button onclick="deletereser(${myObj[i].id})" value=${myObj[i].id} name="Cancel">Cancel</button>                                 
+                        <p>Number: ${myObj[i].qty}  </p>
+                        <div class="del-upd">
+                            <button onClick="updreservation(${myObj[i].id})">Update</button>                           
+                            <button onclick="deletereser(${myObj[i].id})" value=${myObj[i].id} name="Cancel">Cancel</button>                                 
+                        </div>    
                     </div>                    
                 </div>`;        
     }    
@@ -191,6 +194,9 @@
             }
         }
         http.send(null);
+    }
+    const updreservation = (e) => {
+        window.location='updres.html?id='+e;
     }
 
 </script>
